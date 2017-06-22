@@ -1,0 +1,24 @@
+ {{pageTitle}}
+<div class='panel-body'>
+    <div class='table-responsive'>
+        <table class='table' *ngIf='products && products.length'>
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Code</th>
+                    <th>Available</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor='let product of products'>
+                    <td>{{product.productName}}</td>
+                    <td>{{ product.productCode | lowercase }}</td>
+                    <td>{{ product.releaseDate }}</td>
+                    <td>{{ product.price | currency:'USD':true:'1.2-2' }}</td>
+                    <td><input type="text" class="form-control" [(ngModel)]="product.quantity" /></td>
+                    <td><button class="btn btn-primary btn-small" (click)="addToCart(product.quantity)">Add to Cart </button></td>
+                </tr>
+            </tbody>
+        </table>
